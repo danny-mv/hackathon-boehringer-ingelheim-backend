@@ -46,6 +46,7 @@
     "http-status": "^1.7.3",
     "jsonwebtoken": "^9.0.0",
     "mongodb": "^6.3.0",
+    "reflect-metadata": "^0.1.13",
     "ts-node": "^10.9.1",
     "tsyringe": "^4.8.0",
     "yaml": "^2.2.2",

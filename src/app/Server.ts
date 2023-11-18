@@ -4,16 +4,12 @@ import express, { Request, Response, Router } from 'express'
 import helmet from 'helmet'
 import * as http from 'http'
 
-import { MongoClient } from 'mongodb'
 import { HttpResponse } from './routes/HttpResponse'
 import { registerRoutes } from './routes'
-import { MClient } from '../infrastructure/shared/persistence/mongo/MClient'
-import { dbConfig } from '../infrastructure/shared/config'
 
 export class Server {
   private readonly express: express.Express
   private httpServer?: http.Server
-  private mongoClient: Promise<MongoClient>
 
   constructor(private readonly port: string) {
     this.express = express()
@@ -29,6 +25,7 @@ export class Server {
         // eslint-disable-next-line no-console
         console.log(err)
         HttpResponse.Error(res, 'Contact to an admin')
+        _next()
       }
     )
     this.express.use(
@@ -36,6 +33,7 @@ export class Server {
         // eslint-disable-next-line no-console
         console.log(err)
         HttpResponse.Error(res, 'Server error')
+        _next()
       }
     )
   }
@@ -75,8 +73,5 @@ export class Server {
         })
       }
     })
-  }
-  private initDb():void {
-    this.
   }
 }

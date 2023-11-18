@@ -1,14 +1,11 @@
-import { Collection, ObjectId } from 'mongodb'
-import { inject, injectable } from 'tsyringe'
-import { MClient } from './MClient'
+import { Collection, MongoClient, ObjectId } from 'mongodb'
 
-@injectable()
-export abstract class MongoRepository<T> {
-  constructor(@inject('MClient') private db: MClient) {}
+export abstract class MongoBaseRepository<T> {
+  constructor(private readonly client: MongoClient) {}
   protected abstract collectionName(): string
 
   protected async collection(): Promise<Collection> {
-    return this.db.getDatabase().collection(this.collectionName())
+    return this.client.db().collection(this.collectionName())
   }
 
   protected async persist(id: string, entity: T): Promise<void> {
