@@ -35,7 +35,7 @@
     "typescript": "5.0.2"
   },
   "dependencies": {
-    "@asteasolutions/zod-to-openapi": "4.5.0",
+    "@asteasolutions/zod-to-openapi": "4.8.0",
     "bcrypt": "5.1.0",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
